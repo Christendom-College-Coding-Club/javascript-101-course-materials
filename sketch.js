@@ -3,5 +3,13 @@ function setup() {
 	background(0);
 	fill(255);
 	textSize(32);
-	text("Hello World 0_o", 12, 200);
+}
+
+let bob_x = 0;
+
+function draw() {
+	background(0);
+	bob_x++;
+	ellipse(bob_x,100,100,100);
+	text("bob", bob_x - 50, 200);
 }
