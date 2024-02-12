@@ -1,3 +1,16 @@
+function drawBasicCryptid(x,y,s,a) {
+	push();
+	translate(x,y)
+	scale(s)
+	rotate(a)
+
+	// draw your cryptid here
+	rect(0,0,200,100)
+
+	pop()
+}
+
+
 /*** this is where the code that draws your cryptid goes ***/
 function drawGooby(x,y,s,a) {
 
@@ -86,7 +99,7 @@ function drawGooby(x,y,s,a) {
 
 /*** this code is called once, at the start of the program ***/
 function setup() {
-	createCanvas(600, 400);
+	createCanvas(1000, 1000);
 	background(255,255,255);
 }
 
@@ -94,15 +107,34 @@ function setup() {
 let gooby_a = 0;
 // the x position of the cryptid
 let gooby_x = 0;
+let gooby_y = 200;
+
+let visible = true;
 
 /*** this code is called 60 times per second ***/
 function draw() {
 	background(255,255,255);
-	drawGooby(gooby_x,200,1,gooby_a)
+
+	if (visible) {
+		drawGooby(gooby_x,gooby_y,1,gooby_a)
+	}
+
+	noFill()
+	stroke(0)
+	ellipse(gooby_x,gooby_y,200,200)
+
 	gooby_x += 6;
 	gooby_a += PI/180;
 
-	if (gooby_x > 650) {
+	if (gooby_x > 1000) {
 		gooby_x = -50;
+	}
+}
+
+function mouseClicked() {
+	let distance = ((mouseX - gooby_x)**2 + (mouseY - gooby_y)**2)**0.5
+
+	if (distance < 100) {
+		visible = !visible;
 	}
 }
