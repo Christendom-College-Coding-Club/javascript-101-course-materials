@@ -171,8 +171,14 @@ let visible = true;
 let crusader_x = 400;
 let crusader_y = 200;
 
+const keys = new Set();
+
 /*** this code is called 60 times per second ***/
 function draw() {
+
+	fill(0)
+	stroke(0)
+	console.log(keys)
 	handleKeyPress()
 
 	let distance = ((crusader_x - gooby_x)**2 + (crusader_y - gooby_y)**2)**0.5
@@ -213,14 +219,22 @@ function mouseClicked() {
 
 function handleKeyPress() {
 	if (keyIsPressed) {
-		if (keyCode === UP_ARROW) {
+		if (keys.has('ArrowUp')) {
 			crusader_y -= 10;
-		} else if (keyCode === DOWN_ARROW) {
+		} if (keys.has('ArrowDown')) {
 			crusader_y += 10;
-		} else if (keyCode === LEFT_ARROW) {
+		} if (keys.has('ArrowLeft')) {
 			crusader_x -= 10;
-		} else if (keyCode === RIGHT_ARROW) {
+		} if (keys.has('ArrowRight')) {
 			crusader_x += 10;
 		}
 	}
+}
+
+function keyPressed() {
+	keys.add(key)
+}
+
+function keyReleased() {
+	keys.delete(key)
 }
