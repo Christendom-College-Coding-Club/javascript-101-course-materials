@@ -27,7 +27,6 @@ function draw() {
 
 	fill(0)
 	stroke(0)
-	console.log(keys)
 	handleKeyPress()
 
 	let distance = ((crusader_x - cryptid_x)**2 + (crusader_y - cryptid_y)**2)**0.5
